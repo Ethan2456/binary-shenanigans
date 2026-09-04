@@ -2,8 +2,11 @@
 #define BINARY_H
 
 #include <iostream>
+#include <string>
 
 void outputOptions();
+
+int BinaryToDecimal();
 
 
 

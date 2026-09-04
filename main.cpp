@@ -3,9 +3,12 @@
 
 int main(){
 
-    std::cout << "Hello!\n";
+    int userOption;
 
-    printHelloWorld();
+    outputOptions();
+
+    std::cin >> userOption;
+    
 
     return 0;
 }

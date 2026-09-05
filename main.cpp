@@ -28,6 +28,7 @@ int main(){
 
                 decimalOut = binaryToDecimal(userBinary);
 
+                std::cout << "The value that you entered is: " << userBinary << "\n";
                 std::cout << "Your decimal is " << decimalOut << "\n\n\n";
             }
 

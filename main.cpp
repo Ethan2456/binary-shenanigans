@@ -7,38 +7,39 @@ int main(){
     int userOption;
     std::string userBinary;
 
-    outputOptions();
+    do {
 
-    //input
-    std::cin >> userOption;
+        outputOptions();
 
-    //output based on option picked
-    if(userOption == 1){
-        std::cout << "Enter your 16-bit binary string: ";
-        std::cin >> userBinary;
+        //input
+        std::cin >> userOption;
 
-        if(userBinary.size() != 16){
-            std::cout << "You did not enter a 16 bit string\n";
-            std::cout << "Terminating program.\n";
+        //output based on option picked
+        //option 1: 16 bit binary        
+        if(userOption == 1){
+            std::cout << "Enter your 16-bit binary string: ";
+            std::cin >> userBinary;
+
+            if(userBinary.size() != 16){
+                std::cout << "You did not enter a 16 bit string\n\n\n";
+            }
+            else{
+                int decimalOut;
+
+                decimalOut = binaryToDecimal(userBinary);
+
+                std::cout << "Your decimal is " << decimalOut << "\n\n\n";
+            }
+
         }
-        else{
-            int decimalOut;
 
-            decimalOut = binaryToDecimal(userBinary);
+        
 
-            std::cout << "Your decimal is " << decimalOut << "\n";
-        }
+    } while(userOption != -1);
 
-    }
-    if(userOption == 0){ //testing for the power functino
-        int userBaseNum;
-        int userAmountNum;
 
-        std::cin >> userBaseNum;
-        std::cin >> userAmountNum;
 
-        std::cout << power(userBaseNum, userAmountNum) << "\n";
-    }
+
     
 
     return 0;

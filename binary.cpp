@@ -2,8 +2,12 @@
 
 void outputOptions(){
     std::cout << "Welcome to the binary converter.\n";
-    std::cout << "1) 16-bit Binary to decimal\n";
-    std::cout << "Press the associated number to select the option\n";
+    std::cout << "What is your choice of input\n\n";
+    std::cout << "1) 16-bit Binary\n";
+    std::cout << "2) 32-bit Hexadecimal\n";
+    std::cout << "3) interger or decimal\n";
+    std::cout << "-1) to exit out the program\n";
+    std::cout << "Press the associated number to select the option\n\n";
 }
 
 //ignore this im using cmath instead

@@ -11,7 +11,14 @@ const int HIGHEST_BINARY_BIT = 15;
 //functions
 void outputOptions();
 
-int binaryToDecimal(std::string userBin);
+int binaryToDecimal(std::string userBin); //16 bit binary
+
+std::string decimalToHex16(int inDecimal); //outputs a hex in 16 bit for the 1st option
+
+std::string hexToDecimal32(std::string userHex); //32 bit hex
+
+std::string decimalToBinary32(int inDecimal); // outputs binary in 32 bit for the 2nd option
+
 
 int power(int base, int amount);
 

@@ -1,8 +1,8 @@
-##binary shenanigans
+#binary shenanigans
 
 Assignment for CSC2025X02. A binary/hexadecimal converter in C++.
 
-### Algorithm explaination
+## Algorithm explaination
 
 For the Algorithms I chose 2. 1 for converting hexadecimal and binary to decimals and 1 for converting decimal to either hexadecimal or binary.
 

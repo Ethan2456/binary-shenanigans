@@ -101,7 +101,7 @@ std::string decimalToHex16(int inDecimal){
     hexValue[3] = remainder; //add this to the first value of the Hex (16^0)
 
     //count to iterate through the hex (start at 2(the third element of the hexvalue))
-    int count = 2;
+    int count = 2; //change this later to hexValue.size() - 1;
 
     //keep dividing the quotient intill it reaches 0
     while(quotient != 0){
@@ -140,4 +140,39 @@ int hexToDecimal32(std::string userHex){
     }
 
     return sum;
+}
+
+std::string decimalToBinary32(int inDecimal){
+    //uses a similar algorithm to decimalToHex16();
+    //expect for the fact that we are dividing by 2
+    int quotient = 0;
+    int remainder = 0;
+    std::string binaryValue = "00000000000000000000000000000000"; //32 digits (because 32bits)
+
+    //intial division
+    quotient = inDecimal / 2;
+    remainder = inDecimal % 2; //this should always result in 1 or 0
+
+    //31 = last digit or the first digit needing to be replaced.
+    //also +48 to convert a int to char
+    binaryValue[31] = remainder + 48;
+
+    //use a count to deincrement through the string and replace 0's with 1's when needed
+    //subtract by a addtional 1 because we already indexed 31.
+    int count = (binaryValue.size() - 1) - 1; //size of the string
+    while(quotient != 0){
+
+        remainder = quotient % 2;
+
+        //int to char conversion by adding 48 since 48 = 0 in ascii. Then adding would represent
+        //the char version of the int.
+        binaryValue[count] = remainder + 48;
+
+        quotient = quotient / 2;
+
+        count -= 1;
+    }
+
+    return binaryValue;
+
 }

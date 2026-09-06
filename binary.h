@@ -21,12 +21,13 @@ int binaryToDecimal(std::string userBin); //16 bit binary
 std::string decimalToHex16(int inDecimal); //outputs a hex in 16 bit for the 1st option
 //as you need to display the binary, decimal representation, and hex representation in 16.
 
-int hexToDecimal32(std::string userHex); //32 bit hex
+int hexToDecimal32(std::string userHex); //32 bit hex to decimal
 
 std::string decimalToBinary32(int inDecimal); // outputs binary in 32 bit for the 2nd option
+//as you need to display the hex, decimal representation, and binary representation in 32.
 
 
-int power(int base, int amount);
+//int power(int base, int amount);
 
 
 

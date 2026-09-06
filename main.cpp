@@ -37,6 +37,7 @@ int main(){
             }
 
         }
+        //option 2: 32-bit hex to decimal
         if(userOption == 2){
             std::string userHex;
 
@@ -53,7 +54,9 @@ int main(){
 
                 decimalOut = hexToDecimal32(userHex);
                 
-                std::cout << "Your decimal is: " << decimalOut << "\n\n";
+                std::cout << "Your value that you entered is: " << userHex << "\n";
+                std::cout << "Your decimal is: " << decimalOut << "\n";
+                std::cout << "The binary equivalent is: " << binaryOut << "\n\n";
 
             }
         }
@@ -61,7 +64,7 @@ int main(){
             int userDecimal;
 
             std::cin >> userDecimal;
-            std::cout << "\nYour hex value is: " << decimalToHex16(userDecimal) << "\n";
+            std::cout << "\nYour binary value is: " << decimalToBinary32(userDecimal)<< "\n";
         }
 
         

@@ -53,12 +53,31 @@ int main(){
                 std::string binaryOut;
 
                 decimalOut = hexToDecimal32(userHex);
+                binaryOut = decimalToBinary32(decimalOut);
                 
                 std::cout << "Your value that you entered is: " << userHex << "\n";
                 std::cout << "Your decimal is: " << decimalOut << "\n";
                 std::cout << "The binary equivalent is: " << binaryOut << "\n\n";
 
             }
+        }
+        //option 3 convert a decimal to binary or hex. (conversion will be 32 bits)
+        if(userOption == 3){
+            int userInt;
+            std::string binaryOut;
+            std::string hexOut;
+
+            std::cout << "Enter an integer: ";
+            std::cin >> userInt;
+
+            binaryOut = decimalToBinary32(userInt);
+            hexOut = decimalToHex32(userInt);
+
+            std::cout << "The value that you entered is: " << userInt << "\n";
+            std::cout << "The binary equivalent(32-bits) is: " << binaryOut << "\n";
+            std::cout << "The hex equivalent(32-bits) is: " << hexOut << "\n";
+
+
         }
         if(userOption == 4){ //testing case
             int userDecimal;

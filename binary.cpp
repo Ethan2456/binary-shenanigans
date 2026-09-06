@@ -176,3 +176,40 @@ std::string decimalToBinary32(int inDecimal){
     return binaryValue;
 
 }
+
+std::string decimalToHex32(int inDecimal){
+    //THIS IS LITERALLY THE SAME ALGORITHM AS decimalToHex16() the only difference is it
+    //can handle up to 32 bits and the output is in 32 bits
+    int quotient = 0;
+    int remainder = 0;
+    //declare a hexValue string to store hex values in (8 for 32-bits)
+    std::string hexValue = "00000000";
+
+    //intial divison
+    quotient = inDecimal / 16;
+    remainder = inDecimal % 16;
+    remainder = intToHexLetter(remainder);
+    hexValue[7] = remainder; //add this to the first value of the Hex (16^0)
+
+    //count to iterate through the hex (start at 2 since we already did 3)
+    int count = (hexValue.size() - 1) - 1;
+
+    //keep dividing the quotient intill it reaches 0
+    while(quotient != 0){
+     
+        //remainder = what value it needs to represent
+        remainder = quotient % 16;
+
+        //add value to a string
+        hexValue[count] = intToHexLetter(remainder);
+
+        quotient = quotient / 16;
+
+        //go left of the hex value
+        count -= 1;
+
+    }
+
+    return hexValue;
+
+}

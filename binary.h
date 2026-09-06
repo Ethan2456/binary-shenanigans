@@ -26,6 +26,8 @@ int hexToDecimal32(std::string userHex); //32 bit hex to decimal
 std::string decimalToBinary32(int inDecimal); // outputs binary in 32 bit for the 2nd option
 //as you need to display the hex, decimal representation, and binary representation in 32.
 
+std::string decimalToHex32(int inDecimal); // outputs the hex in 32 bits for the 3rd option.
+
 
 //int power(int base, int amount);
 

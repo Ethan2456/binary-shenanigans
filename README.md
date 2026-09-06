@@ -17,3 +17,4 @@ n would be the size of the string (which was either 15 or 7 because the binary t
 ```
 (2 or 16)^((15 or 7) - i)
 ```
+A source that probably explains this better than I have: [MathMonks](https://mathmonks.com/number-system/binary-to-decimal)

@@ -28,8 +28,8 @@ int main(){
                 int decimalOut;
                 std::string hexOut;
 
-                decimalOut = binaryToDecimal(userBinary);
-                hexOut = decimalToHex16(decimalOut);
+                decimalOut = binaryToDecimal16(userBinary);
+                hexOut = decimalToHex(decimalOut,16); //arguement 16bits
 
                 std::cout << "The value that you entered is: " << userBinary << "\n";
                 std::cout << "Your decimal is: " << decimalOut << "\n";
@@ -41,7 +41,7 @@ int main(){
         if(userOption == 2){
             std::string userHex;
 
-            std::cout << "NOTE: DO NOT INCLUDE 0x\n";
+            std::cout << "NOTE: DO NOT INCLUDE 0x (Ex. 0012A231)\n";
             std::cout << "Enter your 32-bit hexadecimal value: ";
             std::cin >> userHex;
 
@@ -53,7 +53,7 @@ int main(){
                 std::string binaryOut;
 
                 decimalOut = hexToDecimal32(userHex);
-                binaryOut = decimalToBinary32(decimalOut);
+                binaryOut = decimalToBinary(decimalOut,32);
                 
                 std::cout << "Your value that you entered is: " << userHex << "\n";
                 std::cout << "Your decimal is: " << decimalOut << "\n";
@@ -70,20 +70,13 @@ int main(){
             std::cout << "Enter an integer: ";
             std::cin >> userInt;
 
-            binaryOut = decimalToBinary32(userInt);
-            hexOut = decimalToHex32(userInt);
+            binaryOut = decimalToBinary(userInt,32);
+            hexOut = decimalToHex(userInt,32);
 
             std::cout << "The value that you entered is: " << userInt << "\n";
             std::cout << "The binary equivalent(32-bits) is: " << binaryOut << "\n";
-            std::cout << "The hex equivalent(32-bits) is: " << hexOut << "\n";
+            std::cout << "The hex equivalent(32-bits) is: " << hexOut << "\n\n";
 
-
-        }
-        if(userOption == 4){ //testing case
-            int userDecimal;
-
-            std::cin >> userDecimal;
-            std::cout << "\nYour binary value is: " << decimalToBinary32(userDecimal)<< "\n";
         }
 
         

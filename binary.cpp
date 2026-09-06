@@ -2,12 +2,12 @@
 
 void outputOptions(){
     std::cout << "Welcome to the binary converter.\n";
-    std::cout << "What is your choice of input\n\n";
+    std::cout << "What is your choice of input\n";
     std::cout << "1) 16-bit Binary\n";
     std::cout << "2) 32-bit Hexadecimal\n";
-    std::cout << "3) interger or decimal\n";
-    std::cout << "-1) to exit out the program\n";
-    std::cout << "Press the associated number to select the option\n\n";
+    std::cout << "3) integer or decimal\n";
+    std::cout << "or enter -1 to exit out the program\n";
+    std::cout << "Enter the associated number to select the option: ";
 }
 
 //handle converting integers to hexletters
@@ -70,7 +70,7 @@ int hexLetterToInt(char hexValue){
 
 
 
-int binaryToDecimal(std::string userBin){
+int binaryToDecimal16(std::string userBin){
     int sum = 0;
 
     //iterate starting from the right most bit
@@ -84,43 +84,6 @@ int binaryToDecimal(std::string userBin){
 
 
     return sum;
-}
-
-std::string decimalToHex16(int inDecimal){
-
-    //divide by 16 keep quoitent and find remainder. then the remainder is the hex value
-    int quotient = 0;
-    int remainder = 0;
-    //declare a hexValue string to store hex values in
-    std::string hexValue = "0000";
-
-    //intial divison
-    quotient = inDecimal / 16;
-    remainder = inDecimal % 16;
-    remainder = intToHexLetter(remainder);
-    hexValue[3] = remainder; //add this to the first value of the Hex (16^0)
-
-    //count to iterate through the hex (start at 2(the third element of the hexvalue))
-    int count = 2; //change this later to hexValue.size() - 1;
-
-    //keep dividing the quotient intill it reaches 0
-    while(quotient != 0){
-     
-        //remainder = what value it needs to represent
-        remainder = quotient % 16;
-
-        //add value to a string
-        hexValue[count] = intToHexLetter(remainder);
-
-        quotient = quotient / 16;
-
-        //go left of the hex value
-        count -= 1;
-
-    }
-
-    return hexValue;
-
 }
 
 //convert a 32 bit hex value to a decimal
@@ -142,74 +105,141 @@ int hexToDecimal32(std::string userHex){
     return sum;
 }
 
-std::string decimalToBinary32(int inDecimal){
-    //uses a similar algorithm to decimalToHex16();
-    //expect for the fact that we are dividing by 2
-    int quotient = 0;
+
+std::string decimalToHex(int inDecimal, int bitType){
+    //can handle up to 32 bits or 16 bits
+    int quotient = 0; //quotient and remainder for the algorithm
     int remainder = 0;
-    std::string binaryValue = "00000000000000000000000000000000"; //32 digits (because 32bits)
+    int maxDigits = 0; //used to represent the size of the indexes for 32 and 16 bits
+    std::string hexValue; //string to store hex values in (8 for 32-bits and 4 for 16-bits)
 
-    //intial division
-    quotient = inDecimal / 2;
-    remainder = inDecimal % 2; //this should always result in 1 or 0
+    //handle what needs to be outputted (whether that be 32 or 16)
+    if(bitType == 32){
+        hexValue = "00000000"; //size for 32 bits
+        maxDigits = hexValue.size() - 1; //max index of hexvalue
 
-    //31 = last digit or the first digit needing to be replaced.
-    //also +48 to convert a int to char
-    binaryValue[31] = remainder + 48;
+        //intial divison
+        quotient = inDecimal / 16;
+        remainder = inDecimal % 16;
+        remainder = intToHexLetter(remainder);
+        hexValue[maxDigits] = remainder; //add this to the first value of the Hex (16^0)
 
-    //use a count to deincrement through the string and replace 0's with 1's when needed
-    //subtract by a addtional 1 because we already indexed 31.
-    int count = (binaryValue.size() - 1) - 1; //size of the string
-    while(quotient != 0){
+        //count to iterate through the hex (start at 2 since we already did 3)
+        int count = (maxDigits) - 1;
 
-        remainder = quotient % 2;
+        //keep dividing the quotient intill it reaches 0
+        while(quotient != 0){
+     
+            //remainder = what value it needs to represent
+            remainder = quotient % 16;
 
-        //int to char conversion by adding 48 since 48 = 0 in ascii. Then adding would represent
-        //the char version of the int.
-        binaryValue[count] = remainder + 48;
+            //add value to a string
+            hexValue[count] = intToHexLetter(remainder);
 
-        quotient = quotient / 2;
+            quotient = quotient / 16;
 
-        count -= 1;
+            //go left of the hex value
+            count -= 1;
+
+        }
+
+        return hexValue;
     }
+    if(bitType == 16){
+        hexValue = "0000"; //this is the size for 16 bits
+        maxDigits = hexValue.size() - 1; //max index of hexvalue
 
-    return binaryValue;
+        //intial divison
+        quotient = inDecimal / 16;
+        remainder = inDecimal % 16; //remainder = value that digit needs to be
+        remainder = intToHexLetter(remainder);
+        hexValue[maxDigits] = remainder; //add this to the first value of the Hex (16^0)
+
+        //count to iterate through the hex (start at 2 since we already did 3)
+        int count = (maxDigits) - 1;
+
+        //keep dividing the quotient intill it reaches 0
+        while(quotient != 0){       
+            remainder = quotient % 16; //remainder = what value it needs to represent
+            hexValue[count] = intToHexLetter(remainder); //add value to complete string
+            quotient = quotient / 16;
+            count -= 1;
+        }
+
+        return hexValue;
+    }
+    else{ //error handling
+        return "Invalid bit Type detected (Can only be 16 or 32)\n";
+    }
 
 }
 
-std::string decimalToHex32(int inDecimal){
-    //THIS IS LITERALLY THE SAME ALGORITHM AS decimalToHex16() the only difference is it
-    //can handle up to 32 bits and the output is in 32 bits
+std::string decimalToBinary(int inDecimal, int bitType){
+    //uses a similar algorithm to decimalToHex();
+    //expect for the fact that we are dividing by 2
     int quotient = 0;
     int remainder = 0;
-    //declare a hexValue string to store hex values in (8 for 32-bits)
-    std::string hexValue = "00000000";
+    int maxDigits;
+    std::string binaryValue;
 
-    //intial divison
-    quotient = inDecimal / 16;
-    remainder = inDecimal % 16;
-    remainder = intToHexLetter(remainder);
-    hexValue[7] = remainder; //add this to the first value of the Hex (16^0)
+    if(bitType == 32){
+        binaryValue = "00000000000000000000000000000000"; //32 digits (because 32bits)
+        maxDigits = binaryValue.size() - 1; // size of the index binaryValue - 1
 
-    //count to iterate through the hex (start at 2 since we already did 3)
-    int count = (hexValue.size() - 1) - 1;
+        //intial division
+        quotient = inDecimal / 2;
+        remainder = inDecimal % 2; //this should always result in 1 or 0
 
-    //keep dividing the quotient intill it reaches 0
-    while(quotient != 0){
-     
-        //remainder = what value it needs to represent
-        remainder = quotient % 16;
+        //maxdigit = last digit or the first digit needing to be replaced.
+        //also +48 to convert a int to char
+        binaryValue[maxDigits] = remainder + 48;
 
-        //add value to a string
-        hexValue[count] = intToHexLetter(remainder);
+        //use a count to deincrement through the string and replace 0's with 1's when needed
+        //subtract by a addtional 1 because we already indexed maxDigit.
+        int count = (maxDigits) - 1; //size of the string
+        while(quotient != 0){
 
-        quotient = quotient / 16;
+            remainder = quotient % 2;
 
-        //go left of the hex value
-        count -= 1;
+            //int to char conversion by adding 48 since 48 = 0 in ascii. Then adding would
+            //represent the char version of the int.
+            binaryValue[count] = remainder + 48;
 
+            quotient = quotient / 2;
+
+            count -= 1;
+        }
+
+        return binaryValue;
     }
+    if(bitType == 16){
+        binaryValue = "0000000000000000";
+        maxDigits = binaryValue.size() - 1; //size of the index
 
-    return hexValue;
+        //same algorithm as first conditional
+        //intial division
+        quotient = inDecimal / 2;
+        remainder = inDecimal % 2;
+        binaryValue[maxDigits] = remainder + 48; //+48 to convert a int to char
+
+        //use a count to deincrement through the string
+        int count = (maxDigits) - 1; //size of the string (after handling first digit)
+        while(quotient != 0){
+
+            remainder = quotient % 2;
+
+            //int to char conversion
+            binaryValue[count] = remainder + 48;
+
+            quotient = quotient / 2;
+
+            count -= 1;
+        }
+
+        return binaryValue;
+    }
+    else{ //error handle 
+        return "Invalid bit Type detected (Can only be 16 or 32)\n";
+    }
 
 }

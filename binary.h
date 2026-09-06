@@ -1,9 +1,9 @@
 #ifndef BINARY_H
 #define BINARY_H
 
-#include <iostream>
-#include <string>
-#include <cmath> //for powers
+#include <iostream> //input output
+#include <string> 
+#include <cmath> //for powers (pow function)
 
 //const vars
 const int HIGHEST_BINARY_DIGIT = 15;// represents the amount of digits in 16 bit binary (16 - 1)
@@ -12,18 +12,24 @@ const int HIGHEST_HEX_DIGIT = 7; //represents the amount of digits in 32-bit hex
 //functions
 void outputOptions(); //output a menu for user
 
-char intToHexLetter(int hexValue); //used to convert numbers to letter (ie. A = 10, B = 11)
+//used to convert/check an integer or hex value to a letter (ie. A = 10, B = 11)
+char intToHexLetter(int hexValue); 
 
-int hexLetterToInt(char hexValue); //used to convert hex letters to numbers
+//used in the hex conversion functions, takes a hexValue (A,B,C) and converts/checks the numbers (10,11,12)
+int hexLetterToInt(char hexLetter); 
 
-int binaryToDecimal16(std::string userBin); //16 bit binary
+//takes a 16-bit binary as a string and converts to a decimal
+int binaryToDecimal16(std::string userBin);
 
-int hexToDecimal32(std::string userHex); //32 bit hex to decimal
+//takes a 32-bit hexadecimal as a string and converts to a decimal
+int hexToDecimal32(std::string userHex);
 
-std::string decimalToHex(int inDecimal, int bitType); //arguement bitType = determines what output
+//takes a decimal and converts to hex and takes an arguement for the bit type 
+//(can handle only 16 or 32 bits)
+std::string decimalToHex(int inDecimal, int bitType); 
 
-std::string decimalToBinary(int inDecimal, int bitType); //uses same style of arguement as
-                                                         //decimal to hex.
+//takes a decimal and converts to binary. also takes an arguement for the bit type (16 or 32 bits)
+std::string decimalToBinary(int inDecimal, int bitType);
 
 
 

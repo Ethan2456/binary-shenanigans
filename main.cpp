@@ -32,10 +32,30 @@ int main(){
                 hexOut = decimalToHex16(decimalOut);
 
                 std::cout << "The value that you entered is: " << userBinary << "\n";
-                std::cout << "Your decimal is " << decimalOut << "\n";
-                std::cout << "Your hexadecimal equivalent is " << hexOut << "\n\n";
+                std::cout << "Your decimal is: " << decimalOut << "\n";
+                std::cout << "Your hexadecimal equivalent is: " << hexOut << "\n\n";
             }
 
+        }
+        if(userOption == 2){
+            std::string userHex;
+
+            std::cout << "NOTE: DO NOT INCLUDE 0x\n";
+            std::cout << "Enter your 32-bit hexadecimal value: ";
+            std::cin >> userHex;
+
+            if(userHex.size() != 8){
+                std::cout << "You did not enter a 32-bit hexadecimal value. \n\n";
+            }
+            else{
+                int decimalOut;
+                std::string binaryOut;
+
+                decimalOut = hexToDecimal32(userHex);
+                
+                std::cout << "Your decimal is: " << decimalOut << "\n\n";
+
+            }
         }
         if(userOption == 4){ //testing case
             int userDecimal;

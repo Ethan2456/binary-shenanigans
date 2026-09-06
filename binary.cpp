@@ -40,6 +40,34 @@ char intToHexLetter(int hexValue){
     }
 }
 
+int hexLetterToInt(char hexValue){
+    //this follows the same procedure as intToHexLetter expect it converts hex to int instead
+    if(hexValue == 'A'){
+        return 10;
+    }
+    if(hexValue == 'B'){
+        return 11;
+    }
+    if(hexValue == 'C'){
+        return 12;
+    }
+    if(hexValue == 'D'){
+        return 13;
+    }
+    if(hexValue == 'E'){
+        return 14;
+    }
+    if(hexValue == 'F'){
+        return 15;
+    }
+    else if(hexValue > 'F'){ //error handling.
+        return -1;
+    }
+    else{ //return the character because it's just a number.
+        return hexValue - 48; //d
+    }
+}
+
 
 
 int binaryToDecimal(std::string userBin){
@@ -50,7 +78,7 @@ int binaryToDecimal(std::string userBin){
     for(int i = userBin.size() - 1; i >= 0; i--){ //maybe have this as a constant
         if(userBin[i] == '1'){ //power(2,(15 - i))
             //index of the right is greater, therefore, subtract by 15 or 2^15.
-            sum += std::pow(2,(HIGHEST_BINARY_BIT - i));
+            sum += std::pow(2,(HIGHEST_BINARY_DIGIT - i));
         }
     } 
 
@@ -59,7 +87,6 @@ int binaryToDecimal(std::string userBin){
 }
 
 std::string decimalToHex16(int inDecimal){
-    //hexLetters[6] = {'A','B','C','D','E','F'};
 
     //divide by 16 keep quoitent and find remainder. then the remainder is the hex value
     int quotient = 0;
@@ -98,23 +125,19 @@ std::string decimalToHex16(int inDecimal){
 
 //convert a 32 bit hex value to a decimal
 int hexToDecimal32(std::string userHex){
+    int sum = 0;
 
-}
+    //iterate backwards from the far right to left 
+    for(int i = userHex.size() - 1; i >= 0; i--){
+        if(userHex[i] != '0'){ //don't calculate anything that is 0
+            //convert chars to numbers.
+            int base = hexLetterToInt(userHex[i]);
 
-
-
-//ignore this im using cmath instead
-/*
-int power(int base, int amount){
-    int sum = base;
-
-    if(amount == 0){
-        return 1;
+            //the formula for calculation is usually
+            // 16^(the digit you are on (0-7)) * base value (0 - F)
+            sum += std::pow(16,HIGHEST_HEX_DIGIT - i) * base;
+        }
     }
 
-    for(int i = 0; i < amount - 1; i++){
-        sum *= base;
-    }
     return sum;
 }
-*/

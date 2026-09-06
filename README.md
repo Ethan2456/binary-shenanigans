@@ -15,5 +15,5 @@ For the conversion of binary or hexadecimal to decimal. I just iterated through 
 n would be the size of the string (which was either 15 or 7 because the binary that needed to be outputted was 16 bits and the hex that needed to be outputted was 32 bits or 8 values) - the current index that we were on. It looked something like this.
 
 ```
-16 ^ (15 or 7) - i (the current index)
+(2 or 16)^((15 or 7) - i)
 ```

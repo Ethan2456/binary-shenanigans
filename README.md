@@ -1,4 +1,4 @@
-###binary shenanigans
+# binary shenanigans
 
 Assignment for CSC2025X02. A binary/hexadecimal converter in C++.
 
